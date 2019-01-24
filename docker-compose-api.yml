@@ -12,3 +12,12 @@ apiserver:
     - back-tier 
   secrets:
     - postgres_password
+watcher:
+  build:
+    context: api
+    dockerfile: Dockerfile.api
+  volumes:
+    - ./api:/usr/src/ddev 
+  command: mvn fizzed-watcher:run 
+  networks:
+    - back-tier
